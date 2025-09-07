@@ -1,13 +1,10 @@
 
 import os
-from glob import glob
-import numpy as np
 import wave
 
 class ReadWave:
     @staticmethod
-    def read_wav_files_from_folder(file_path):
-
+    def read_wav_file(file_path):
         try:
             # Extract the filename without the path
             filename = os.path.basename(file_path)

@@ -1,3 +1,36 @@
 import wave
+import datetime
+import os
 
-# def get_info
+class Metadata:
+    def __init__(self):
+        self.dict_info = {}
+        self.datetime = datetime
+    def get_all_info(self,file_path):
+        self.dict_info["name"] = self.get_name(file_path)
+        self.dict_info["creation datetime"] = self.get_creation_datetime(file_path)
+        self.dict_info["modification datetime"] = self.get_modify_timestamp(file_path)
+        self.dict_info["size"] = f"{self.get_size(file_path)} bytes"
+        print(self.dict_info)
+
+    def get_name(self,file_path):
+        filename = os.path.basename(file_path)
+        print("filename",filename)
+        return filename
+
+    def get_creation_datetime(self,file_path):
+        timestamp = os.path.getctime(file_path)
+        create_datetime = self.datetime.datetime.fromtimestamp(timestamp)
+        print("creation time",create_datetime)
+        return create_datetime
+
+    def get_modify_timestamp(self,file_path):
+        timestamp = os.path.getmtime(file_path)
+        change_datetime = self.datetime.datetime.fromtimestamp(timestamp)
+        print("change time", change_datetime)
+        return change_datetime
+
+    def get_size(self,file_path):
+        file_size = os.path.getsize(file_path)
+        print("file_size", file_size)
+        return file_size
