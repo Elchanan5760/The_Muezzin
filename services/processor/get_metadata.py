@@ -1,4 +1,4 @@
-import wave
+from ..elastic.logger import Logger
 import datetime
 import os
 
@@ -6,6 +6,7 @@ class Metadata:
     def __init__(self):
         self.dict_info = {}
         self.datetime = datetime
+        self.logger = Logger.get_logger()
     def get_all_info(self,file_path):
         self.dict_info["path"] = file_path
         self.dict_info["name"] = self.get_name(file_path)
@@ -13,6 +14,7 @@ class Metadata:
         self.dict_info["modification datetime"] = f"{self.get_modify_timestamp(file_path)}"
         self.dict_info["size"] = self.get_size(file_path)
         print(self.dict_info)
+        self.logger.info("Metadata created.")
         return self.dict_info
 
     def get_name(self,file_path):

@@ -1,12 +1,16 @@
 from elasticsearch import Elasticsearch
+from .logger import Logger
 
 class Connection:
     @staticmethod
     def get_es_client() -> Elasticsearch:
+        logger = Logger.get_logger()
+
+
         try:
             es = Elasticsearch("http://localhost:9200")
-            print("Connected to Elasticsearch!")
+            logger.info("Connected to elasticsearch.")
             return es
         except Exception as ex:
-            print(f"Could not connect to Elasticsearch, retrying...\n{ex}")
+            logger.error(ex)
         raise ConnectionError("Failed to connect to Elasticsearch after multiple attempts.")

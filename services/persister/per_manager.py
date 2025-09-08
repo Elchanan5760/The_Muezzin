@@ -1,4 +1,4 @@
-from convert_to_datetime import DateTime
+from services.elastic.logger import Logger
 import json
 from services.kafka.sub import Sub
 from unique_id import CreateID
@@ -9,6 +9,7 @@ from mongoDB.dal import Loader
 
 class PersisterManager:
     def __init__(self):
+        self.logger = Logger.get_logger()
         self.sub = Sub("processed")
         self.sub.connect()
         self.create_id = CreateID()
@@ -18,6 +19,7 @@ class PersisterManager:
         mapping = Mapping()
         mapping.map_idx()
     def manage_all_files(self):
+        self.logger.info("The pesister started")
         data = self.sub.sub()
         for msg in data:
             print('this',msg)

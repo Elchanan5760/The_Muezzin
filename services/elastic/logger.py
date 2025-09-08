@@ -4,7 +4,7 @@ from datetime import datetime
 class Logger:
      _logger = None
      @classmethod
-     def get_logger(cls, name="your_logger_name", es_host="your_es_host_name",index="your_index_logs_name", level=logging.DEBUG):
+     def get_logger(cls, name="Logger", es_host="http://localhost:9200",index="logges", level=logging.DEBUG):
          if cls._logger:
             return cls._logger
          logger = logging.getLogger(name)

@@ -1,5 +1,6 @@
 from .connection import Connection
 import os
+from .logger import Logger
 
 class Mapping:
     def __init__(self):
@@ -15,13 +16,18 @@ class Mapping:
                     }
                 }
             })
+        self.logger = Logger.get_logger()
 
     def map_idx(self,mapping = {}):
-        if not mapping:
-            mapping = self.mapping
-        if not self.es.indices.exists(index=self.IDX_NAME):
-            res = self.es.indices.create(index=self.IDX_NAME, body=mapping,ignore=400)
-            return res
+        try:
+            if not mapping:
+                mapping = self.mapping
+            if not self.es.indices.exists(index=self.IDX_NAME):
+                res = self.es.indices.create(index=self.IDX_NAME, body=mapping,ignore=400)
+                self.logger.info("Metadata mapped successfully.")
+                return res
+        except Exception as ex:
+            self.logger.error(ex)
 
     def add_field_map(self,field_name,type_field):
         res = self.es.indices.put_mapping(
@@ -35,7 +41,3 @@ class Mapping:
             }
         )
         return res
-
-    def get_map(self):
-        mapping = self.es.indices.get_mapping(index="tweets")
-        return mapping

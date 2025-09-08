@@ -1,10 +1,11 @@
-
+from ..elastic.logger import Logger
 import os
 import wave
 
 class ReadWave:
-    @staticmethod
-    def read_wav_file(file_path):
+    def __init__(self):
+        self.logger = Logger.get_logger()
+    def read_wav_file(self,file_path):
         try:
             # Extract the filename without the path
             filename = os.path.basename(file_path)
@@ -21,7 +22,9 @@ class ReadWave:
 
             # Read the WAV file
             print(f"Successfully read: {filename}")
+            self.logger.info(f"Successfully read: {filename}")
             return wf
         except Exception as e:
             print(f"Error reading {file_path}: {e}")
+            self.logger.error(f"Error reading {file_path}: {e}")
 
