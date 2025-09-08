@@ -9,8 +9,8 @@ class Mapping:
                 "mappings": {
                     "properties": {
                         "name": {"type": "keyword"},
-                        'creation datetime': {"type": "date", "format": "strict_date_optional_time||yyyy-MM-dd HH:mm:ss"},
-                        'modification datetime': {"type": "date", "format": "strict_date_optional_time||yyyy-MM-dd HH:mm:ss"},
+                        'creation datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
+                        'modification datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
                         'size': {"type": "integer"}
                     }
                 }

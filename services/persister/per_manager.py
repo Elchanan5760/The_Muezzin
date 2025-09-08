@@ -16,8 +16,7 @@ class PersisterManager:
     def manage_all_files(self):
         data = self.sub.sub()
         for msg in data:
-            print(msg)
-            print(type(self.create_id.hashing(msg)))
+            print('this',msg)
             hash_idx = self.create_id.hashing(msg)
             del msg['path']
             print(msg)
