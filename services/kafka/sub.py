@@ -15,6 +15,7 @@ class Sub:
                 self.topic,
                 bootstrap_servers=self.bootstrap_servers,
                 group_id=self.group_id,
+                auto_offset_reset='earliest',
                 value_deserializer=lambda v: json.loads(v.decode("utf-8"))
             )
             print('connected to kafka SUB')
