@@ -11,7 +11,7 @@ class Metadata:
         self.dict_info["name"] = self.get_name(file_path)
         self.dict_info["creation datetime"] = f"{self.get_creation_datetime(file_path)}"
         self.dict_info["modification datetime"] = f"{self.get_modify_timestamp(file_path)}"
-        self.dict_info["size"] = f"{self.get_size(file_path)} bytes"
+        self.dict_info["size"] = self.get_size(file_path)
         print(self.dict_info)
         return self.dict_info
 
