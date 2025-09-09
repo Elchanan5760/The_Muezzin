@@ -1,14 +1,13 @@
 import os
-from importlib.metadata import metadata
 
 from services.utils.elastic.logger import Logger
 import json
 from services.utils.kafka.sub import Sub
-from services.store_data.key.unique_id import CreateID
+from services.store_data.key.hash import CreateHash
 from services.utils.elastic.mapping import Mapping
 from services.utils.elastic.loader import Loading
-from services.store_data.mongoDB.readfile import FileRead
-from mongoDB.dal import Loader
+from services.utils.mongoDB.readfile import FileRead
+from services.utils.mongoDB.dal import Loader
 
 class StoringManager:
     def __init__(self):
@@ -16,7 +15,7 @@ class StoringManager:
         self.Topic = os.getenv('Topic','processed')
         self.sub = Sub(self.Topic)
         self.sub.connect()
-        self.create_id = CreateID()
+        self.create_id = CreateHash()
         self.loader = Loading()
         self.mongodb = Loader()
         self.read_wav = FileRead(self.mongodb.mydb)

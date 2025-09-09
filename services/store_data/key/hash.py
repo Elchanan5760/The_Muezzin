@@ -1,7 +1,7 @@
 import hashlib
 from services.utils.elastic.logger import Logger
 
-class CreateID:
+class CreateHash:
     def __init__(self):
         self.hasher = hashlib.sha256()
         self.logger = Logger.get_logger()
