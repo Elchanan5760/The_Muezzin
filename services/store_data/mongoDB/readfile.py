@@ -1,5 +1,5 @@
 import os
-from services.elastic.logger import Logger
+from services.utils.elastic.logger import Logger
 import gridfs
 
 
@@ -8,6 +8,8 @@ class FileRead:
         self.fs = gridfs.GridFS(db)
         self.FILE_TYPE = os.getenv("FILE_TYPE",'audio/wav')
         self.logger = Logger.get_logger()
+
+    # Get file path and load it to mongoDB.
     def upload(self,file_path,file_key):
         try:
             with open(file_path, 'rb') as f:

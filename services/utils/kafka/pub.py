@@ -1,7 +1,7 @@
 from kafka import KafkaProducer
 import os
 import json
-from ..elastic.logger import Logger
+from services.utils.elastic.logger import Logger
 
 class Pub:
     def __init__(self):
@@ -10,7 +10,7 @@ class Pub:
         self.producer = None
         self.logger = Logger.get_logger()
 
-
+    # Connects to kafka producer.
     def connect(self):
         try:
             self.producer = KafkaProducer(
@@ -23,6 +23,7 @@ class Pub:
             self.logger.error(ex)
             raise Exception(ex)
 
+    # Send the message with "topic" to kafka.
     def pub(self,data,topic):
         try:
             print("sending to topic:",topic,data)

@@ -1,16 +1,20 @@
-from services.elastic.logger import Logger
+import os
+from importlib.metadata import metadata
+
+from services.utils.elastic.logger import Logger
 import json
-from services.kafka.sub import Sub
-from unique_id import CreateID
-from services.elastic.mapping import Mapping
-from services.elastic.loader import Loading
-from readfile import FileRead
+from services.utils.kafka.sub import Sub
+from services.store_data.key.unique_id import CreateID
+from services.utils.elastic.mapping import Mapping
+from services.utils.elastic.loader import Loading
+from services.store_data.mongoDB.readfile import FileRead
 from mongoDB.dal import Loader
 
 class StoringManager:
     def __init__(self):
         self.logger = Logger.get_logger()
-        self.sub = Sub("processed")
+        self.Topic = os.getenv('Topic','processed')
+        self.sub = Sub(self.Topic)
         self.sub.connect()
         self.create_id = CreateID()
         self.loader = Loading()
@@ -21,6 +25,8 @@ class StoringManager:
     def manage_all_files(self):
         self.logger.info("The pesister started")
         data = self.sub.sub()
+
+        # Iterate on data from kafka.
         for msg in data:
             print('this',msg)
             hash_idx = self.create_id.hashing(msg)

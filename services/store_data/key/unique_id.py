@@ -1,10 +1,12 @@
 import hashlib
-from services.elastic.logger import Logger
+from services.utils.elastic.logger import Logger
 
 class CreateID:
     def __init__(self):
         self.hasher = hashlib.sha256()
         self.logger = Logger.get_logger()
+
+    # Get data and return hash from data itself.
     def hashing(self,data_dict):
         try:
             sorted_items = sorted(data_dict)

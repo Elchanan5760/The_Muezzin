@@ -1,6 +1,6 @@
 from pymongo import MongoClient ,errors
 import os
-from services.elastic.logger import Logger
+from services.utils.elastic.logger import Logger
 
 class Loader:
     def __init__(self):
@@ -11,6 +11,8 @@ class Loader:
         self.mydb = self.client[self.DB_NAME]
         self.collection = self.mydb[self.COLL_NAME]
         self.logger = Logger.get_logger()
+
+    # Gets the document and upload it to mongoDB
     def load_to_mongodb(self,massage):
         try:
             res = self.collection.insert_one(massage)

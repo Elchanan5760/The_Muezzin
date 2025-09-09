@@ -1,11 +1,12 @@
 import speech_recognition as sr
-from services.elastic.logger import Logger
+from services.utils.elastic.logger import Logger
 
 class SpeechToText:
     def __init__(self):
         self.r = sr.Recognizer()
         self.logger = Logger.get_logger()
 
+    # Get the file path and transcribes it.
     def transcription(self,file_path):
         try:
             with sr.AudioFile(file_path) as source:
