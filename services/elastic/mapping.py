@@ -5,14 +5,15 @@ from .logger import Logger
 class Mapping:
     def __init__(self):
         self.es = Connection.get_es_client()
-        self.IDX_NAME = os.getenv("IDX_NAME", 'metadata')
+        self.IDX_NAME = os.getenv("IDX_NAME", 'store_data')
         self.mapping = os.getenv("MAPPING",{
                 "mappings": {
                     "properties": {
                         "name": {"type": "keyword"},
                         'creation datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
                         'modification datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
-                        'size': {"type": "integer"}
+                        'size': {"type": "integer"},
+                        'Transcribed': {'type': 'text'}
                     }
                 }
             })

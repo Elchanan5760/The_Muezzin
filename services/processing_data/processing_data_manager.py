@@ -1,9 +1,10 @@
 import os
 from glob import glob
-from services.processor.read_file import ReadWave
-from services.processor.get_metadata import Metadata
+from services.processing_data.read_file import ReadWave
+from services.processing_data.get_metadata import Metadata
 from services.kafka.pub import Pub
 from services.elastic.logger import Logger
+from transcription.speech_to_text import SpeechToText
 
 class ProcessorManager:
     def __init__(self):
@@ -12,15 +13,15 @@ class ProcessorManager:
         self.pub = Pub()
         self.pub.connect()
         self.logger = Logger.get_logger()
-        self.read_wave = ReadWave()
+        self.transcription = SpeechToText()
     def manage_all_files(self):
         self.logger.info("The muazin started")
         # Construct the pattern to find all .wav files in the folder
         search_pattern = os.path.join(self.folder_path, '*.wav')
 
-        # Iterate through all files matching the pattern
+        # Iterate through all files.
         for file_path in glob(search_pattern):
-            read_file = self.read_wave.read_wav_file(file_path)
             dict_info = self.metadata.get_all_info(file_path)
+            dict_info["transcribed"] = self.transcription.transcription(file_path)
             self.pub.pub(dict_info,"processed")
 

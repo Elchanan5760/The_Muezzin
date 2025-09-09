@@ -7,7 +7,7 @@ from services.elastic.loader import Loading
 from readfile import FileRead
 from mongoDB.dal import Loader
 
-class PersisterManager:
+class StoringManager:
     def __init__(self):
         self.logger = Logger.get_logger()
         self.sub = Sub("processed")
