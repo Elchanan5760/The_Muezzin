@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 import json
 import os
-from ..elastic.logger import Logger
+from services.utils.elastic import Logger
 
 class Sub:
     def __init__(self,topic):
@@ -11,6 +11,7 @@ class Sub:
         self.consumer = None
         self.logger = Logger.get_logger()
 
+    # Connects to kafka consumer.
     def connect(self):
         try:
             self.consumer = KafkaConsumer(
@@ -27,6 +28,7 @@ class Sub:
             print(ex)
             raise Exception(ex)
 
+    # Receive the messages from "topic" shown above.
     def sub(self):
         try:
             for msg in self.consumer:

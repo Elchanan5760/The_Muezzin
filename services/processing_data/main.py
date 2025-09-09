@@ -1,4 +1,4 @@
-from processing_data_manager import ProcessorManager
+from processing_metadata_manager import ProcessorManager
 
 manager = ProcessorManager()
 if __name__=="__main__":

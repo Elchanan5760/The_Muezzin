@@ -19,6 +19,7 @@ class Mapping:
             })
         self.logger = Logger.get_logger()
 
+    # Mapping with types templates.
     def map_idx(self,mapping = {}):
         try:
             if not mapping:
@@ -30,6 +31,7 @@ class Mapping:
         except Exception as ex:
             self.logger.error(ex)
 
+    # Add field of mapping.
     def add_field_map(self,field_name,type_field):
         res = self.es.indices.put_mapping(
             index=self.IDX_NAME,
