@@ -31,7 +31,7 @@ Send it with kafka producer with "processed" topic.
 Transcript wav file trough speech_recognition library 
 and adding this to the dictionary of metadata.
 
-The transcription goes here becouse it part of processing.
+The transcription goes here becouse it processing but this is not metadata.
 
 ## store_data
 
