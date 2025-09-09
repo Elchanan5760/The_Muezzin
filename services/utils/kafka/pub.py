@@ -1,7 +1,7 @@
 from kafka import KafkaProducer
 import os
 import json
-from services.utils.elastic import Logger
+from services.utils.elastic.logger import Logger
 
 class Pub:
     def __init__(self):

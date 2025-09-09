@@ -1,7 +1,5 @@
-from store_data_manager import StoringManager
+from transcription_manager import Transcription
 
-
-
-manager = StoringManager()
+transcription = Transcription()
 if __name__=="__main__":
-    manager.manage_all_files()
+    transcription.manage_transcription()

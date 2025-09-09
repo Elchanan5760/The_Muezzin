@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 import json
 import os
-from services.utils.elastic import Logger
+from services.utils.elastic.logger import Logger
 
 class Sub:
     def __init__(self,topic):
