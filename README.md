@@ -22,16 +22,16 @@ Create dictionary with metadata
 - size
 through os library.
 
-### transcription
+### kafka
+
+Send it with kafka producer with "processed" topic.
+
+## transcription
 
 Transcript wav file trough speech_recognition library 
 and adding this to the dictionary of metadata.
 
 The transcription goes here becouse it part of processing.
-
-### kafka
-
-Send it with kafka producer with "processed" topic.
 
 ## store_data
 
