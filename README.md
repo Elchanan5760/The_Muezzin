@@ -38,3 +38,27 @@ The transcription goes here becouse it processing but this is not metadata.
 ### manager
 
 Get the massage with kafka consumer with "processed" topic.
+
+Folder with .wav files
+     |
+     v
+[Manager] --(uses glob)--> [List of .wav files]
+     |
+     v
+[Metadata Extraction] --(uses os)--> [Metadata dict]
+     |
+     v
+[Transcription] --(uses speech_recognition)--> [Metadata + transcription]
+     |
+     v
+[Hash Generation] --> [Data + Hash]
+     |
+     v
+[Kafka Producer] --(topic: processed)--> [Kafka Broker]
+     |
+     v
+[Kafka Consumer]
+     |
+     +--> [Elasticsearch] <--- Stores [metadata + transcription, hash]
+     |
+     +--> [MongoDB] <--- Stores [wav file, hash]
