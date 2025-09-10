@@ -39,6 +39,10 @@ The transcription goes here becouse it processing but this is not metadata.
 
 Get the massage with kafka consumer with "processed" topic.
 
+Stores to elastic with mapping with its hash.
+
+Read the wav to binary and stores in mongoDB with hash above.
+
 Folder with .wav files
      |
      v
@@ -61,4 +65,4 @@ Folder with .wav files
      |
      +--> [Elasticsearch] <--- Stores [metadata + transcription, hash]
      |
-     +--> [MongoDB] <--- Stores [wav file, hash]
+     +--> [MongoDB] <---(uses gridfs) Stores [wav file, hash]
