@@ -8,6 +8,7 @@ class Loading:
         self.IDX_NAME = os.getenv("IDX_NAME",'store_data')
         self.logger = Logger.get_logger()
 
+
     #Loads to elastic with index store_data.
     def load_es(self,doc_id,doc):
         try:

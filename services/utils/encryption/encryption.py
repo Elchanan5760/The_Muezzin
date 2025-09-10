@@ -1,7 +1,7 @@
 import base64
 
 
-class DecryptWords:
+class Encryption:
     @staticmethod
     def decrypt(decrypted):
         decrypt = base64.b64decode(decrypted)
