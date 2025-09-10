@@ -5,6 +5,7 @@ class Text:
         self.logger = Logger.get_logger()
         self.file_path = file_path
 
+    # Read file.txt.
     def read_txt(self):
         try:
             with open(self.file_path, "r") as t:
@@ -17,6 +18,7 @@ class Text:
         except Exception as e:
             self.logger.error(f"An error occurred: {e}")
 
+    # Organize the list above by line of title is key and encrypted text is value
     def organized_txt(self):
         dict_words = {}
         key = ""
@@ -29,7 +31,3 @@ class Text:
             else:
                 key = ""
         return dict_words
-
-o1 = Text(r"C:\Users\HOME\PycharmProjects\The_Muezzin\data\hostile.txt")
-print(o1.read_txt())
-print(o1.organized_txt())

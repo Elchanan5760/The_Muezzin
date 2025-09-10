@@ -2,7 +2,7 @@
 FROM python:3.12-slim AS builder
 
 WORKDIR /app
-ARG SERVICE_DIR=services/preprocessor
+ARG SERVICE_DIR=services/processing_data
 
 # Create a virtual environment to isolate dependencies
 ENV VIRTUAL_ENV=/opt/venv
@@ -28,8 +28,8 @@ ENV VIRTUAL_ENV=/opt/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
 #Declare ENV var's
-ENV TOPIC=""
-ENV KAFKA_HOST=""
+ENV TOPIC="metadata"
+ENV FOLDER_PATH=""
 
 # Make "services" importable and copy only what we need
 ENV PYTHONPATH=/app

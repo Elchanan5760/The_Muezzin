@@ -12,8 +12,8 @@ class Metadata:
     def get_all_info(self,file_path):
         self.dict_info["path"] = file_path
         self.dict_info["name"] = self.get_name(file_path)
-        self.dict_info["creation datetime"] = f"{self.get_creation_datetime(file_path)}"
-        self.dict_info["modification datetime"] = f"{self.get_modify_timestamp(file_path)}"
+        self.dict_info["creation_datetime"] = f"{self.get_creation_datetime(file_path)}"
+        self.dict_info["modification_datetime"] = f"{self.get_modify_timestamp(file_path)}"
         self.dict_info["size"] = self.get_size(file_path)
         print(self.dict_info)
         self.logger.info("Metadata created.")

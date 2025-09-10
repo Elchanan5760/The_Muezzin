@@ -10,8 +10,8 @@ class Mapping:
                 "mappings": {
                     "properties": {
                         "name": {"type": "keyword"},
-                        'creation datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
-                        'modification datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss[.S{1,9}]"},
+                        'creation_datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss"},
+                        'modification_datetime': {"type": "date", "format": "yyyy-MM-dd HH:mm:ss"},
                         'size': {"type": "integer"},
                         'Transcribed': {'type': 'text'}
                     }
@@ -25,7 +25,7 @@ class Mapping:
             if not mapping:
                 mapping = self.mapping
             if not self.es.indices.exists(index=self.IDX_NAME):
-                res = self.es.indices.create(index=self.IDX_NAME, body=mapping,ignore=400)
+                res = self.es.indices.create(index=self.IDX_NAME, body=mapping)
                 self.logger.info("Metadata mapped successfully.")
                 return res
         except Exception as ex:

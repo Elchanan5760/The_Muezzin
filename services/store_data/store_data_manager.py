@@ -5,7 +5,7 @@ import json
 from services.utils.kafka.sub import Sub
 from services.store_data.key.hash import CreateHash
 from services.utils.elastic.mapping import Mapping
-from services.utils.elastic.loader import Loading
+from services.utils.elastic.dal import DAL
 from services.utils.mongoDB.readfile import FileRead
 from services.utils.mongoDB.dal import Loader
 
@@ -16,7 +16,7 @@ class StoringManager:
         self.sub = Sub(self.Topic)
         self.sub.connect()
         self.create_id = CreateHash()
-        self.loader = Loading()
+        self.loader = DAL()
         self.mongodb = Loader()
         self.read_wav = FileRead(self.mongodb.mydb)
         mapping = Mapping()
@@ -33,4 +33,4 @@ class StoringManager:
             del msg['path']
             print(msg)
             json_msg = json.dumps(msg)
-            self.loader.load_es(hash_idx,json_msg)
+            self.loader.create_doc(hash_idx, json_msg)
